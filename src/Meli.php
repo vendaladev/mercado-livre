@@ -1,4 +1,4 @@
-<?php namespace VendalaDev\MercadoLivre;
+<?php namespace Vendaladev\MercadoLivre;
 
 class Meli implements Contracts {
 

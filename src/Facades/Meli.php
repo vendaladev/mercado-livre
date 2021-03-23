@@ -1,4 +1,4 @@
-<?php namespace VendalaDev\MercadoLivre\Facades;
+<?php namespace Vendaladev\MercadoLivre\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

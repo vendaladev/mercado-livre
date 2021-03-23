@@ -10,7 +10,7 @@
     ], 
     "autoload": {
         "psr-4": {
-            "VendalaDev\\MercadoLivre\\": "src/"
+            "Vendaladev\\MercadoLivre\\": "src/"
         }
     },
     "require": {}
