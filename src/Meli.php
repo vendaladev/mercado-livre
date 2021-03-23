@@ -283,11 +283,11 @@ class Meli implements Contracts {
             if (isset($opts[CURLOPT_HTTPHEADER])) {
                 $opts[CURLOPT_HTTPHEADER] = array_merge(
                     $opts[CURLOPT_HTTPHEADER],
-                    array('Authorization: Bearer ' . $params['access_token']),
+                    array('Authorization: Bearer ' . $access_token),
                 );
             } else {
                 $opts[CURLOPT_HTTPHEADER] = array(
-                    'Authorization: Bearer ' . $params['access_token'],
+                    'Authorization: Bearer ' . $access_token,
                 );
             }
         }
