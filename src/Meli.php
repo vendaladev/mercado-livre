@@ -1,4 +1,4 @@
-<?php namespace Livepixel\MercadoLivre;
+<?php namespace VendalaDev\MercadoLivre;
 
 class Meli implements Contracts {
 
@@ -270,6 +270,16 @@ class Meli implements Contracts {
         curl_setopt_array($ch, self::$CURL_OPTS);
 
         if (isset($params['access_token'])) {
+            $access_token = $params['access_token'];
+        }
+
+        $parts = parse_url($path);
+        parse_str($parts['query'], $query);
+        if (!empty($query['access_token'])) {
+            $access_token = $query['access_token'];
+        }
+
+        if (!empty($access_token)) {
             if (isset($opts[CURLOPT_HTTPHEADER])) {
                 $opts[CURLOPT_HTTPHEADER] = array_merge(
                     $opts[CURLOPT_HTTPHEADER],

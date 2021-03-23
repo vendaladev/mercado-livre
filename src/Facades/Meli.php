@@ -1,4 +1,4 @@
-<?php namespace Livepixel\MercadoLivre\Facades;
+<?php namespace VendalaDev\MercadoLivre\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

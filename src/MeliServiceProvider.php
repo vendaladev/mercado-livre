@@ -1,7 +1,7 @@
-<?php namespace Livepixel\MercadoLivre;
+<?php namespace VendalaDev\MercadoLivre;
 
 use Illuminate\Support\ServiceProvider;
-use Livepixel\MercadoLivre\Meli;
+use VendalaDev\MercadoLivre\Meli;
 
 class MeliServiceProvider extends ServiceProvider
 {
@@ -28,7 +28,7 @@ class MeliServiceProvider extends ServiceProvider
 			return new Meli($this->client_id, $this->client_secret, $this->urls, $this->curl_opts);
 		});
 		
-	        $this->app->singleton('\Livepixel\MercadoLivre\Contracts', function(){
+	        $this->app->singleton('\VendalaDev\MercadoLivre\Contracts', function(){
 	            return new Meli($this->client_id, $this->client_secret, $this->urls, $this->curl_opts);
 	        });
 	}

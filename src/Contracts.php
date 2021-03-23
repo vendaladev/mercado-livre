@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Livepixel\MercadoLivre;
+namespace VendalaDev\MercadoLivre;
 
 /**
  * Interface Factory
  *
- * @package \Livepixel\MercadoLivre
+ * @package \VendalaDev\MercadoLivre
  */
 interface Contracts {}
