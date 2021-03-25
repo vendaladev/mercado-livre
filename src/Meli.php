@@ -321,6 +321,18 @@ class Meli implements Contracts {
             $uri = $path;
         }
 
+        $parsed = parse_url($uri);
+        $query = $parsed['query'];
+        parse_str($query, $params_query);
+
+        unset($params_query['access_token']);
+        $query_string = '';
+        if (!empty($params_query)) {
+            $query_string = '?'.http_build_query($params_query);
+        }
+
+        $uri = $parsed['scheme'].'://'.$parsed['host'].$parsed['path'].$query_string;
+
         if (isset($params['access_token'])) {
             unset($params['access_token']);
         }
