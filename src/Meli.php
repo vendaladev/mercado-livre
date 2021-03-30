@@ -274,21 +274,23 @@ class Meli implements Contracts {
         }
 
         $parts = parse_url($path);
-        parse_str($parts['query'], $query);
-        if (!empty($query['access_token'])) {
-            $access_token = $query['access_token'];
-        }
+        if (isset($parts['query'])) {
+            parse_str($parts['query'], $query);
+            if (!empty($query['access_token'])) {
+                $access_token = $query['access_token'];
+            }
 
-        if (!empty($access_token)) {
-            if (isset($opts[CURLOPT_HTTPHEADER])) {
-                $opts[CURLOPT_HTTPHEADER] = array_merge(
-                    $opts[CURLOPT_HTTPHEADER],
-                    array('Authorization: Bearer ' . $access_token)
-                );
-            } else {
-                $opts[CURLOPT_HTTPHEADER] = array(
-                    'Authorization: Bearer ' . $access_token,
-                );
+            if (!empty($access_token)) {
+                if (isset($opts[CURLOPT_HTTPHEADER])) {
+                    $opts[CURLOPT_HTTPHEADER] = array_merge(
+                        $opts[CURLOPT_HTTPHEADER],
+                        array('Authorization: Bearer ' . $access_token)
+                    );
+                } else {
+                    $opts[CURLOPT_HTTPHEADER] = array(
+                        'Authorization: Bearer ' . $access_token,
+                    );
+                }
             }
         }
 
