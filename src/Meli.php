@@ -256,7 +256,7 @@ class Meli implements Contracts {
 
     /**
      * Execute all requests and returns the json body and headers
-     * 
+     *
      * @param string $path
      * @param array $opts
      * @param array $params
@@ -269,6 +269,7 @@ class Meli implements Contracts {
         $ch = curl_init($uri);
         curl_setopt_array($ch, self::$CURL_OPTS);
 
+        $access_token = null;
         if (isset($params['access_token'])) {
             $access_token = $params['access_token'];
         }
@@ -279,18 +280,18 @@ class Meli implements Contracts {
             if (!empty($query['access_token'])) {
                 $access_token = $query['access_token'];
             }
+        }
 
-            if (!empty($access_token)) {
-                if (isset($opts[CURLOPT_HTTPHEADER])) {
-                    $opts[CURLOPT_HTTPHEADER] = array_merge(
-                        $opts[CURLOPT_HTTPHEADER],
-                        array('Authorization: Bearer ' . $access_token)
-                    );
-                } else {
-                    $opts[CURLOPT_HTTPHEADER] = array(
-                        'Authorization: Bearer ' . $access_token,
-                    );
-                }
+        if (!empty($access_token)) {
+            if (isset($opts[CURLOPT_HTTPHEADER])) {
+                $opts[CURLOPT_HTTPHEADER] = array_merge(
+                    $opts[CURLOPT_HTTPHEADER],
+                    array('Authorization: Bearer ' . $access_token)
+                );
+            } else {
+                $opts[CURLOPT_HTTPHEADER] = array(
+                    'Authorization: Bearer ' . $access_token,
+                );
             }
         }
 
@@ -302,7 +303,6 @@ class Meli implements Contracts {
         $return["httpCode"] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         curl_close($ch);
-        
         return $return;
     }
 
