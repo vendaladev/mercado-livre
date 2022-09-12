@@ -88,7 +88,7 @@ class Meli implements Contracts {
         if($redirect_uri)
             $this->redirect_uri = $redirect_uri;
 
-        $body = array(
+        /*$body = array(
             "grant_type" => "authorization_code", 
             "client_id" => $this->client_id, 
             "client_secret" => $this->client_secret, 
@@ -99,6 +99,15 @@ class Meli implements Contracts {
         $opts = array(
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $body
+        );*/
+	    
+	$opts = array(
+            CURLOPT_HTTPHEADER => array(
+                'accept: application/json',
+                'content-type: application/x-www-form-urlencoded'
+            ),
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => 'grant_type=authorization_code&client_id='.$this->client_id.'&client_secret='.$this->client_secret.'&code='.$code.'&redirect_uri='.urlencode($redirect_uri)
         );
     
         $request = $this->execute(self::$OAUTH_URL, $opts);
@@ -131,7 +140,7 @@ class Meli implements Contracts {
     public function refreshAccessToken() {
 
         if($this->refresh_token) {
-             $body = array(
+            /* $body = array(
                 "grant_type" => "refresh_token", 
                 "client_id" => $this->client_id, 
                 "client_secret" => $this->client_secret, 
@@ -141,6 +150,15 @@ class Meli implements Contracts {
             $opts = array(
                 CURLOPT_POST => true, 
                 CURLOPT_POSTFIELDS => $body
+            );*/
+		
+	    $opts = array(
+                CURLOPT_HTTPHEADER => array(
+                    'accept: application/json',
+                    'content-type: application/x-www-form-urlencoded'
+                ),
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => 'grant_type=refresh_token&client_id='.$this->client_id.'&client_secret='.$this->client_secret.'&refresh_token='.$refresh_token
             );
         
             $request = $this->execute(self::$OAUTH_URL, $opts);
